@@ -17,8 +17,9 @@ const LoginForm = () => {
         title="Password"
         required
         error="Password Strength : No Password"
+        password
       />
-      <TextInput title="Confirm Password" required />
+      <TextInput title="Confirm Password" required password />
 
       <Button label="Submit" />
     </div>
