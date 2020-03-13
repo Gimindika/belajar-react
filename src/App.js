@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import gql from "graphql-tag";
+import React from "react";
+import { useQuery } from "react-apollo";
+import "./App.css";
 
-function App() {
+const App = () => {
+  const { error, data } = useQuery(queries);
+  console.log(useQuery(queries).data);
+  if (error) {
+    console.log("error", error);
+    return;
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul>
+        {data &&
+          data.getBrandList.map(brand => {
+            return <li key={brand.attribtue_id}>{brand.name}</li>;
+          })}
+      </ul>
     </div>
   );
-}
+};
+
+const queries = gql`
+  query {
+    getBrandList {
+      name
+      attribute_id
+      logo
+      sort_order
+    }
+  }
+`;
 
 export default App;
