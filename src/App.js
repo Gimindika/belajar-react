@@ -16,7 +16,7 @@ const App = () => {
       <ul>
         {data &&
           data.getBrandList.map(brand => {
-            return <li key={brand.attribtue_id}>{brand.name}</li>;
+            return <li key={brand.attribute_id}>{brand.name}</li>;
           })}
       </ul>
     </div>
